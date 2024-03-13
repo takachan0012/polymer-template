@@ -81,6 +81,16 @@ do-it:
     just send-packet optimism
     echo "You've done it!"
 
+# Command to streamline the process of switching clients, setting contracts, deploying, performing a sanity check, and sending a packet
+# Usage: just quick-setup
+quick-setup:
+    echo "Starting quick setup..."
+    just switch-client
+    just set-contracts optimism XCounterUC true && just set-contracts base XCounterUC true
+    just deploy optimism base
+    just sanity-check
+    just send-packet optimism
+    echo "Quick setup complete!"
 # Clean up the environment by removing the artifacts and cache folders and running the forge clean command
 # Usage: just clean
 clean:
